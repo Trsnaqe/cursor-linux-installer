@@ -64,12 +64,19 @@ function install_cursor() {
     sudo bash -c "cat > $DESKTOP_ENTRY_PATH" << EOL
 [Desktop Entry]
 Name=Cursor
-Exec=$TERMINAL -e /opt/cursor.appimage
+Comment=AI-First Code Editor
+Exec=/opt/cursor.appimage
 Icon=$ICON_PATH
 Type=Application
-Categories=Development;
-Terminal=true
+Categories=Development;TextEditor;IDE;
+Terminal=false
+StartupWMClass=Cursor
+Keywords=cursor;editor;ide;development;
 EOL
+
+    # Step 6: Update desktop database
+    echo -e "🔄 Updating desktop database..."
+    sudo update-desktop-database
 
     # Step 6: Create a symlink for 'cursor' command
     echo -e "🔗 Creating symlink for 'cursor' command..."
